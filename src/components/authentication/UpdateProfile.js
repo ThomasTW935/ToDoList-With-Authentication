@@ -8,7 +8,7 @@ export default function UpdateProfile() {
     const passwordConfirmRef = useRef()
     const {currentUser, updateEmail,updatePassword} = useAuth()
     const [error, setError] = useState('')
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
     const history = useHistory()
 
     function handleSubmit(e){
@@ -22,15 +22,15 @@ export default function UpdateProfile() {
         setLoading(true)
         setError('')
 
-        if(emailRef.current.value === currentUser.email){
+        if(emailRef.current.value !== currentUser.email){
             promises.push(updateEmail(emailRef.current.value))
         }
-        if(passwordRef.current.value === currentUser.password){
+        if(passwordRef.current.value){
             promises.push(updatePassword(passwordRef.current.value))
         }
 
         Promise.all(promises).then(()=>{
-            history.push('/')
+            history.push('/profile')
         }).catch(()=>{
             setError('Failed to update profile')
         }).finally(()=>{
@@ -40,13 +40,12 @@ export default function UpdateProfile() {
     return (
       <div className='center'>
         <div className='formContainer'>
-          <h2>Sign Up</h2>
+          <h2>Update Profile</h2>
           {error && <div className='error'>{error}</div>}
-          {currentUser && currentUser.email}
           <form onSubmit={handleSubmit} className='form'>
             <section>
               <label>Email</label>
-              <input type='text' ref={emailRef}/>
+              <input defaultValue={currentUser.email} type='text' ref={emailRef}/>
             </section>
             <section>
               <label>Password</label>
@@ -56,9 +55,9 @@ export default function UpdateProfile() {
               <label>Password Confirm</label>
               <input type='password' ref={passwordConfirmRef}/>
             </section>
-            <button disabled={loading} className='btn btn-primary'>Sign Up</button>
+            <button  disabled={loading} className='btn btn-primary'>Update</button>
           </form>
-          <div>Already have an account? <Link to='/login'>Log In</Link></div>
+          <Link className='btn btn-secondary' to='/profile'>Cancel</Link>
         </div>
       </div>
     )
