@@ -25,6 +25,26 @@
     border-radius: 5px;
     margin-top: 1em;
 }
+.btn{
+    border-radius: 5px;
+    padding: .5em;
+    background:hsl(219, 100%, 70%);
+    color: white;
+    cursor: pointer; 
+    text-decoration: none;
+    width: 100%;
+    text-align:center;
+    &-primary:hover{
+        background:hsl(219, 100%, 60%);
+    }
+    &-secondary{
+        align-self:center;
+        background:hsl(110, 63%, 44%);
+        &:hover{
+            background:hsl(110, 63%, 40%);
+        }
+    }
+}
 .formContainer{
     border: 1px solid  hsl(0, 0%, 80%);
     padding: 1.5em 1em;
@@ -36,14 +56,17 @@
     gap: .5em;
     background:white;
     border-radius: 4px;
+    a{
+        align-self: center;
+    }
+    .profile{
+        padding: 1em 0 ;
+    }
 }
 .form{
     section{
         display:flex;
         flex-direction: column;
         margin: 1em 0;
-    }
-    button{
-        width: 100%;
     }
 }

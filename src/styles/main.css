@@ -108,6 +108,32 @@ select {
   margin-top: 1em;
 }
 
+.btn {
+  border-radius: 5px;
+  padding: .5em;
+  background: #669cff;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+  width: 100%;
+  text-align: center;
+}
+
+.btn-primary:hover {
+  background: #337aff;
+}
+
+.btn-secondary {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  background: #41b72a;
+}
+
+.btn-secondary:hover {
+  background: #3ba626;
+}
+
 .formContainer {
   border: 1px solid #cccccc;
   padding: 1.5em 1em;
@@ -127,6 +153,16 @@ select {
   border-radius: 4px;
 }
 
+.formContainer a {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.formContainer .profile {
+  padding: 1em 0;
+}
+
 .form section {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -136,9 +172,5 @@ select {
       -ms-flex-direction: column;
           flex-direction: column;
   margin: 1em 0;
-}
-
-.form button {
-  width: 100%;
 }
 /*# sourceMappingURL=main.css.map */
