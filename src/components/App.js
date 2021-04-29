@@ -8,11 +8,14 @@ import PrivateRoute from './authentication/PrivateRoute'
 import Login from './authentication/Login'
 import UpdateProfile from './authentication/UpdateProfile'
 import ForgotPassword from './authentication/ForgotPassword'
+import Todos from './Todos/Todos'
+import NavBar from './NavBar'
 
 function App() {
   return (
     <div className="App">
       <Router>
+        <NavBar/>
         <AuthProvider>
           <Switch>
             <PrivateRoute path='/profile' component={Profile} />
@@ -20,6 +23,7 @@ function App() {
             <Route path='/forgot-password' component={ForgotPassword}/>
             <Route path='/signup' component={Signup}/>
             <Route path='/login' component={Login}/>
+            <Route exact path='/' component={Todos}/>
           </Switch>
         </AuthProvider>
       </Router>

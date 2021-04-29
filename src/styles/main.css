@@ -93,6 +93,33 @@ select {
   cursor: pointer;
 }
 
+.App nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1em;
+  position: fixed;
+  width: 100%;
+}
+
+.App nav h2 > a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.App nav div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1em;
+}
+
 .center {
   display: -ms-grid;
   display: grid;
@@ -118,13 +145,17 @@ select {
 
 .btn {
   border-radius: 5px;
-  padding: .5em;
-  background: #669cff;
-  color: white;
+  border: 1px solid transparent;
+  padding: .5em 1em;
   cursor: pointer;
   text-decoration: none;
-  width: 100%;
+  color: inherit;
   text-align: center;
+}
+
+.btn-primary {
+  color: white;
+  background: #669cff;
 }
 
 .btn-primary:hover {
@@ -132,6 +163,7 @@ select {
 }
 
 .btn-secondary {
+  color: white;
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
@@ -140,6 +172,14 @@ select {
 
 .btn-secondary:hover {
   background: #3ba626;
+}
+
+.btn-neutral {
+  border-color: #669cff;
+}
+
+.btn-neutral:hover {
+  background: #e6e6e6;
 }
 
 .formContainer {
@@ -180,5 +220,9 @@ select {
       -ms-flex-direction: column;
           flex-direction: column;
   margin: 1em 0;
+}
+
+.form button {
+  width: 100%;
 }
 /*# sourceMappingURL=main.css.map */
