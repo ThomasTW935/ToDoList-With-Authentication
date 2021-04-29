@@ -19,8 +19,15 @@
     height: 100vh;
 }
 .error{
-    background-color:hsl(0, 100%, 90%);
-    color:hsl(5, 100%, 50%);
+    background-color:hsl(0, 50%, 90%);
+    color:hsl(5, 50%, 50%);
+    padding: 1em;
+    border-radius: 5px;
+    margin-top: 1em;
+}
+.message{
+    background-color:hsl(125, 50%, 90%);
+    color:hsl(125, 50%, 50%);
     padding: 1em;
     border-radius: 5px;
     margin-top: 1em;

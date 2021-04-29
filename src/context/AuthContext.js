@@ -20,7 +20,7 @@ export function AuthProvider({children}){
     function logout(){
         return auth.signOut()
     }
-    function forgotPassword(email){
+    function resetPassword(email){
         return auth.sendPasswordResetEmail(email)
     }
     function updateEmail(email){
@@ -42,7 +42,7 @@ export function AuthProvider({children}){
         signup,
         login,
         logout,
-        forgotPassword,
+        resetPassword,
         updateEmail,
         updatePassword
     }
