@@ -7,6 +7,7 @@ export default function Login() {
     const passwordRef = useRef()
     const {currentUser, login} = useAuth()
     const [error, setError] = useState('')
+    const [loading, setLoading] = useState(false)
     const history = useHistory()
 
     async function handleSubmit(e){
@@ -14,13 +15,14 @@ export default function Login() {
 
 
         try {
+          setLoading(true)
           setError('')
           await login(emailRef.current.value,passwordRef.current.value)
           history.push('/profile')
         } catch {
           setError('Failed to create an account')
         }
-
+        setLoading(false)
     }
     return (
       <div className='center'>
@@ -38,7 +40,7 @@ export default function Login() {
               <input type='password' ref={passwordRef}/>
             </section>
             
-            <button className='btn btn-primary'>Log In</button>
+            <button disabled={loading} className='btn btn-primary'>Log In</button>
           </form>
           <div>Create an account here <Link to='/signup'>Sign Up</Link></div>
         </div>

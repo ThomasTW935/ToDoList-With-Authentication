@@ -1,9 +1,21 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
+import React, {useState} from 'react'
+import {Link,useHistory} from 'react-router-dom'
 import {useAuth} from '../../context/AuthContext'
 
 export default function Profile() {
-    const {currentUser} = useAuth()
+    const {currentUser, logout} = useAuth()
+    const [error, setError] = useState('')
+    const history = useHistory()
+
+    async function handleLogout(){
+        try {
+            setError('')
+            await logout()
+            history.push('/')
+        } catch  {
+            setError('Failed to log out')
+        }
+    }
 
     return (
         <div className='center'>
@@ -14,7 +26,7 @@ export default function Profile() {
                 <span>{currentUser.email}</span>
             </div>
             <Link className='btn btn-primary' to='/update-profile'>Update Profile</Link>
-            <Link to='/signup'>Log out</Link>
+            <button className='btn btn-secondary' onClick={handleLogout}>Log out</button>
         </div>
       </div>
     )

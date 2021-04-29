@@ -18,16 +18,16 @@ export function AuthProvider({children}){
         return auth.signInWithEmailAndPassword(email,password)
     }
     function logout(){
-        return
+        return auth.signOut()
     }
     function forgotPassword(email){
-        return
+        return auth.sendPasswordResetEmail(email)
     }
     function updateEmail(email){
-        return
+        return currentUser.updateEmail(email)
     }
-    function updatePassword(email){
-        return
+    function updatePassword(password){
+        return currentUser.updatePassword(password)
     }
 
     useEffect(() => {

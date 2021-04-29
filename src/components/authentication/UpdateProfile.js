@@ -2,32 +2,40 @@ import React, { useRef, useState } from 'react'
 import {Link, useHistory} from 'react-router-dom'
 import {useAuth} from '../../context/AuthContext'
 
-export default function Signup() {
+export default function UpdateProfile() {
     const emailRef = useRef()
     const passwordRef = useRef()
     const passwordConfirmRef = useRef()
-    const {currentUser, signup} = useAuth()
+    const {currentUser, updateEmail,updatePassword} = useAuth()
     const [error, setError] = useState('')
-    const [loading,setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     const history = useHistory()
 
-    async function handleSubmit(e){
+    function handleSubmit(e){
         e.preventDefault()
 
         if(passwordRef.current.value !== passwordConfirmRef.current.value){
           return setError('Passwords do not match')
         }
 
-        try {
-          setLoading(true)
-          setError('')
-          await signup(emailRef.current.value,passwordRef.current.value)
-          history.push('/profile')
-        } catch {
-          setError('Failed to create an account')
-        }
-        setLoading(false)
+        const promises = []
+        setLoading(true)
+        setError('')
 
+        if(emailRef.current.value === currentUser.email){
+            promises.push(updateEmail(emailRef.current.value))
+        }
+        if(passwordRef.current.value === currentUser.password){
+            promises.push(updatePassword(passwordRef.current.value))
+        }
+
+        Promise.all(promises).then(()=>{
+            history.push('/')
+        }).catch(()=>{
+            setError('Failed to update profile')
+        }).finally(()=>{
+            setLoading(false)
+        })
     }
     return (
       <div className='center'>
