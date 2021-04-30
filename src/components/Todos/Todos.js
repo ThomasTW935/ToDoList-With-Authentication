@@ -1,4 +1,7 @@
 import React, { useReducer, useState, useRef } from 'react'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faTrash} from  '@fortawesome/free-solid-svg-icons'
+
 
 const ACTIONS = {
     ADD_TODO: 'add-todo',
@@ -84,7 +87,7 @@ export default function Todos() {
                                <span className='custom-checkbox-span'></span>
                             </label>
                             <p className={todo.complete ? 'todo-task todo-completed':'todo-task'}>{todo.task}</p>
-                            <button onClick={ ()=> handleDelete(todo) }className='btn btn-warning'>Del</button>
+                            <button onClick={ ()=> handleDelete(todo) }className='btn btn-warning btn-trash'></button>
                         </div>
                     }
                 ) }

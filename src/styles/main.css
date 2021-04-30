@@ -157,6 +157,14 @@ select {
   color: #0055ff;
 }
 
+.btn-trash {
+  opacity: 0;
+  background: none;
+  background-image: url("../images/icon-cross.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .formContainer {
   border: 1px solid #cccccc;
   padding: 1.5em 1em;
@@ -303,12 +311,17 @@ nav div {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: .5em;
+  padding: 1em;
   gap: 1em;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
 }
 
 .todos .todo button {
   margin-left: auto;
+}
+
+.todos .todo:hover button {
+  opacity: 1;
 }
 
 .todos .todo-task {

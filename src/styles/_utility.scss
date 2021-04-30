@@ -57,4 +57,11 @@
             color: hsl(220, 100%, 50%);
         }
     }
+    &-trash{
+        opacity: 0;
+        background:none;
+        background-image: url('../images/icon-cross.svg');
+        background-position:center;
+        background-repeat: no-repeat;
+    }
 }
