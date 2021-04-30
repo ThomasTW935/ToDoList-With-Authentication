@@ -31,10 +31,11 @@ export function AuthProvider({children}){
     }
 
     useEffect(() => {
-        return auth.onAuthStateChanged(user=>{
+        const unsubcribe = auth.onAuthStateChanged(user=>{
             setCurrentUser(user)
             setLoading(false)
         })
+        return unsubcribe
     }, [])
 
     const value = {
