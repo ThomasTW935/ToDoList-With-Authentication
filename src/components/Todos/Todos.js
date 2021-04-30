@@ -1,5 +1,6 @@
 import React, { useReducer, useState, useRef } from 'react'
-
+import moon from '../../images/icon-moon.svg'
+import sun from '../../images/icon-sun.svg';
 
 const ACTIONS = {
     ADD_TODO: 'add-todo',
@@ -37,12 +38,17 @@ function newTodo(task,complete){
 
 
 const STATUSES = ['all','active','completed']
+const THEMES = {
+    LIGHt: 'sun',
+    DARK: 'moon'
+}
 
 export default function Todos() {
 
     const [taskName,setTaskName] = useState('')
     const [taskStatus, setTaskStatus] = useState(false)
     const formRef = useRef()
+    const [theme, setTheme] = useState(THEMES.LIGHT)
 
     const [todos, dispatch] = useReducer(reducer, 
         [
@@ -69,12 +75,15 @@ export default function Todos() {
     function handleClear(){
         dispatch({type: ACTIONS.CLEAR_TODOS, payload: {}})
     }
+    function handleThemeChange(){
+        setTheme( prevTheme => prevTheme === THEMES.LIGHT ? THEMES.DARK : THEMES.LIGHT )
+    }
 
     return (
         <div className='todos'>
             <div className='todos__header'>
                 <h1>TODO</h1>
-                <button>Moon</button>
+                <button onClick={handleThemeChange}><img src={ theme === THEMES.LIGHT ? moon : sun } /></button>
                 <form ref={formRef} onSubmit={handleForm} className='todo'>
                     <label className='custom-checkbox'><input onChange={(e)=>{ setTaskStatus( prevStatus=> !prevStatus ) }} className='custom-checkbox-input' type='checkbox' /><span className='custom-checkbox-span'></span></label>
                     <input onChange={ (e)=> { setTaskName(e.target.value) } }  className='todo-task' placeholder='Create a new Todo' />
