@@ -1,0 +1,60 @@
+.center{
+    display:grid;
+    place-content: center;
+}
+.error{
+    background-color:hsl(0, 50%, 90%);
+    color:hsl(5, 50%, 50%);
+    padding: 1em;
+    border-radius: 5px;
+    margin-top: 1em;
+}
+.message{
+    background-color:hsl(125, 50%, 90%);
+    color:hsl(125, 50%, 50%);
+    padding: 1em;
+    border-radius: 5px;
+    margin-top: 1em;
+}
+.btn{
+    border-radius: 5px;
+    border: 1px solid transparent;
+    padding: .5em 1em;
+    cursor: pointer; 
+    text-decoration: none;
+    color:inherit;
+    text-align:center;
+    &-primary{
+        color: white;
+        background:hsl(219, 100%, 70%);
+        &:hover{
+            background:hsl(219, 100%, 60%);
+        }
+    }
+    &-secondary{
+        color: white;
+        align-self:center;
+        background:hsl(110, 63%, 44%);
+        &:hover{
+            background:hsl(110, 63%, 40%);
+        }
+    }
+    &-neutral{
+        border-color: hsl(219, 100%, 70%);
+        &:hover{
+            background:hsl(0, 0%, 90%);
+        }
+    }
+    &-status{
+        background-color: transparent;
+        text-transform: capitalize;
+        opacity: .5;
+        &:hover{
+            opacity: 1;
+        }
+        &-active{
+            opacity: 1;
+            color: hsl(220, 100%, 50%);
+        }
+    }
+}

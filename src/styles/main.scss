@@ -1,109 +1,44 @@
 @import './reset';
 @import './variables';
+@import './utility';
+@import './form';
+@import './navbar';
 
-.App{
-    
-    button{
-        cursor: pointer;
+.todos{
+    width: 50ch;
+    max-width: 700px;
+    margin: 0 auto;
+    .todo{
+        display:flex;
+        align-items:center;
+        padding: .5em;
+        gap: 1em;
+        button{
+            margin-left: auto;
+        }
     }
-    nav{
+    &__header{
         display:flex;
         justify-content:space-between;
-        align-items:center;
-        padding: 1em;
-        position:fixed;
-        width: 100%;
-        h2>a{
-            text-decoration:none;
-            color: inherit;
-        }
+        flex-wrap:wrap;
         div{
-            display:flex;
-            gap: 1em;
+            width:100%;
         }
     }
-}
-.center{
-    display:grid;
-    place-content: center;
-    height: 100vh;
-}
-.error{
-    background-color:hsl(0, 50%, 90%);
-    color:hsl(5, 50%, 50%);
-    padding: 1em;
-    border-radius: 5px;
-    margin-top: 1em;
-}
-.message{
-    background-color:hsl(125, 50%, 90%);
-    color:hsl(125, 50%, 50%);
-    padding: 1em;
-    border-radius: 5px;
-    margin-top: 1em;
-}
-.btn{
-    border-radius: 5px;
-    border: 1px solid transparent;
-    padding: .5em 1em;
-    cursor: pointer; 
-    text-decoration: none;
-    color:inherit;
-    text-align:center;
-    &-primary{
-        color: white;
-        background:hsl(219, 100%, 70%);
-        &:hover{
-            background:hsl(219, 100%, 60%);
-        }
+    &__body{
+
+
     }
-    &-secondary{
-        color: white;
-        align-self:center;
-        background:hsl(110, 63%, 44%);
-        &:hover{
-            background:hsl(110, 63%, 40%);
-        }
-    }
-    &-neutral{
-        border-color: hsl(219, 100%, 70%);
-        &:hover{
-            background:hsl(0, 0%, 90%);
-        }
-    }
-}
-.formContainer{
-    border: 1px solid  hsl(0, 0%, 80%);
-    padding: 1.5em 1em;
-    width: 50vw;
-    max-width: 400px;
-    box-shadow: 0 3px 6px 3px hsl(0, 0%, 80%);
-    display:flex;
-    flex-direction:column;
-    gap: .5em;
-    background:white;
-    border-radius: 4px;
-    a{
-        align-self: center;
-    }
-    .profile{
-        padding: 1em 0 ;
-    }
-}
-.form{
-    section{
+    &__footer{
         display:flex;
-        flex-direction: column;
-        margin: 1em 0;
-    }
-    button{
-        width: 100%;
-    }
-    input{
-        border-radius: 4px;
-        border: 1px solid hsl(0, 0%, 80%);
-        border-radius: 5px;
-        padding: .5em;
-        outline:none;
+        align-items:center;
+        font-size: .8rem;
+        justify-content: space-between;
+        section{
+            display:flex;
+            gap: .5em;
+        }
     }
 }
+
+
