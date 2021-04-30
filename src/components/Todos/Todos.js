@@ -1,12 +1,11 @@
 import React, { useReducer, useState, useRef } from 'react'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faTrash} from  '@fortawesome/free-solid-svg-icons'
 
 
 const ACTIONS = {
     ADD_TODO: 'add-todo',
     UPDATE_TODO: 'update-todo',
     DELETE_TODO: 'delete-todo',
+    CLEAR_TODOS: 'clear-todos',
     UPDATE_STATUS: 'update-status'
 }
 
@@ -26,6 +25,8 @@ function reducer(todos, {type,payload}){
             })
         case ACTIONS.DELETE_TODO:
             return todos.filter(todo=> todo.id !== payload.id)
+        case ACTIONS.CLEAR_TODOS:
+            return []
         default: return todos
     }
 }
@@ -64,6 +65,9 @@ export default function Todos() {
     }
     function handleDelete(todo){
         dispatch({type: ACTIONS.DELETE_TODO, payload: {id:todo.id}})
+    }
+    function handleClear(){
+        dispatch({type: ACTIONS.CLEAR_TODOS, payload: {}})
     }
 
     return (
@@ -104,7 +108,7 @@ export default function Todos() {
 
                     }
                 </section>
-                <button className='btn btn-status'>Clear Completed</button>
+                <button onClick={ handleClear }className='btn btn-status'>Clear Completed</button>
             </div>
         </div>
     )
