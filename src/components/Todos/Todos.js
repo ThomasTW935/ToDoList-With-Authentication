@@ -21,6 +21,8 @@ function reducer(todos, {type,payload}){
                 }
                 return todo
             })
+        case ACTIONS.DELETE_TODO:
+            return todos.filter(todo=> todo.id !== payload.id)
         default: return todos
     }
 }
@@ -57,6 +59,9 @@ export default function Todos() {
     function handleCheckBox(todo){
         dispatch({type: ACTIONS.UPDATE_TODO, payload: {id:todo.id}})
     }
+    function handleDelete(todo){
+        dispatch({type: ACTIONS.DELETE_TODO, payload: {id:todo.id}})
+    }
 
     return (
         <div className='todos'>
@@ -79,7 +84,7 @@ export default function Todos() {
                                <span className='custom-checkbox-span'></span>
                             </label>
                             <p className={todo.complete ? 'todo-task todo-completed':'todo-task'}>{todo.task}</p>
-                            <button className='btn btn-warning'>Del</button>
+                            <button onClick={ ()=> handleDelete(todo) }className='btn btn-warning'>Del</button>
                         </div>
                     }
                 ) }
