@@ -239,6 +239,57 @@ nav div {
   gap: 1em;
 }
 
+.custom-checkbox {
+  position: relative;
+}
+
+.custom-checkbox-input {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+}
+
+.custom-checkbox-input:checked ~ span {
+  border-color: transparent;
+  background: -webkit-gradient(linear, left top, left bottom, from(#57ddff), to(#c058f3));
+  background: linear-gradient(#57ddff, #c058f3);
+}
+
+.custom-checkbox-input:checked ~ span::before {
+  opacity: 1;
+}
+
+.custom-checkbox-span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  height: 1.5rem;
+  width: 1.5rem;
+  border: 1px solid #b3b3b3;
+  border-radius: 50%;
+}
+
+.custom-checkbox-span:hover {
+  border-color: black;
+}
+
+.custom-checkbox-span::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 50%;
+  height: 50%;
+  opacity: 0;
+  background-image: url("../images/icon-check.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .todos {
   width: 50ch;
   max-width: 700px;
@@ -258,6 +309,16 @@ nav div {
 
 .todos .todo button {
   margin-left: auto;
+}
+
+.todos .todo-task {
+  font-weight: bolder;
+  margin: 0 1em;
+}
+
+.todos .todo-completed {
+  text-decoration: line-through;
+  opacity: .5;
 }
 
 .todos__header {

@@ -12,7 +12,7 @@ export default function Todos() {
     const [todos, dispatch] = useReducer(reducer, 
         [
             { id: 1, todo: "Run", isCompleted: false },
-            { id: 2, todo: "Swim", isCompleted: true },
+            { id: 2, todo: "Swim 3x", isCompleted: true },
             { id: 3, todo: "Code", isCompleted: false },
     ])
     const [activeStatus, setActiveStatus] = useState(STATUSES[0])
@@ -23,17 +23,24 @@ export default function Todos() {
                 <h1>TODO</h1>
                 <button>Moon</button>
                 <div className='todo'>
-                    <label className='custom-checkbox'><input className='custome-checkbox-input' type='checkbox' /><span className='custome-checkbox-span'></span></label>
+                    <label className='custom-checkbox'><input className='custom-checkbox-input' type='checkbox' /><span className='custom-checkbox-span'></span></label>
                     <input placeholder='Create a new Todo' />
                 </div>
             </div>
             <div className='todos__body'>
                 { todos.map(todo=>
-                    <div className='todo'>
-                       <label className='custom-checkbox'><input checked={todo.isCompleted} className='custome-checkbox-input' type='checkbox' /><span className='custome-checkbox-span'></span>s</label>
-                        <p>{todo.todo}</p>
-                        <button className='btn btn-warning'>Del</button>
-                    </div>  
+                    {
+                        if(activeStatus === STATUSES[1] && todo.isCompleted) return 
+                        if(activeStatus === STATUSES[2] && !todo.isCompleted) return 
+                        return <div className='todo'>
+                            <label className='custom-checkbox'>
+                               <input checked={todo.isCompleted} className='custom-checkbox-input' type='checkbox' />
+                               <span className='custom-checkbox-span'></span>
+                            </label>
+                            <p className={todo.isCompleted ? 'todo-task todo-completed':'todo-task'}>{todo.todo}</p>
+                            <button className='btn btn-warning'>Del</button>
+                        </div>
+                    }
                 ) }
             </div>
             <div className='todos__footer'>
@@ -47,7 +54,7 @@ export default function Todos() {
 
                     }
                 </section>
-                <button className='btn'>Clear Completed</button>
+                <button className='btn btn-status'>Clear Completed</button>
             </div>
         </div>
     )
