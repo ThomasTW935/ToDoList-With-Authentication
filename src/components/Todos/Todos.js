@@ -3,8 +3,9 @@ import moon from '../../images/icon-moon.svg'
 import sun from '../../images/icon-sun.svg';
 import bgDesktopDark from '../../images/bg-desktop-dark.jpg';
 import bgDesktopLight from '../../images/bg-desktop-light.jpg';
+import Todo from './Todo';
 
-const ACTIONS = {
+export const ACTIONS = {
     ADD_TODO: 'add-todo',
     UPDATE_TODO: 'update-todo',
     DELETE_TODO: 'delete-todo',
@@ -41,8 +42,8 @@ function newTodo(task,complete){
 
 const STATUSES = ['all','active','completed']
 const THEMES = {
-    LIGHt: 'sun',
-    DARK: 'moon'
+    LIGHT: 'light',
+    DARK: 'dark'
 }
 
 export default function Todos() {
@@ -68,12 +69,7 @@ export default function Todos() {
         console.log(taskStatus)
         formRef.current.reset()
     }
-    function handleCheckBox(todo){
-        dispatch({type: ACTIONS.UPDATE_TODO, payload: {id:todo.id}})
-    }
-    function handleDelete(todo){
-        dispatch({type: ACTIONS.DELETE_TODO, payload: {id:todo.id}})
-    }
+   
     function handleClear(){
         dispatch({type: ACTIONS.CLEAR_TODOS, payload: {}})
     }
@@ -81,11 +77,11 @@ export default function Todos() {
         setTheme( prevTheme => prevTheme === THEMES.LIGHT ? THEMES.DARK : THEMES.LIGHT )
     }
 
+
+
     return (
         <div className='todos'>
-            <div className='todos__background'>
-                <img src={ theme === THEMES.LIGHT ? bgDesktopLight : bgDesktopDark } />
-            </div>
+            <div className={ `todos__background ${theme}-theme` }></div>
             <div className='todos__header'>
                 <h1>TODO</h1>
                 <button className='btn' onClick={handleThemeChange}><img src={ theme === THEMES.LIGHT ? moon : sun } /></button>
@@ -99,14 +95,7 @@ export default function Todos() {
                     {
                         if(activeStatus === STATUSES[1] && todo.complete) return
                         if(activeStatus === STATUSES[2] && !todo.complete) return
-                        return <div key={todo.id} className='todo'>
-                            <label className='custom-checkbox'>
-                               <input onChange={()=> handleCheckBox(todo)} checked={todo.complete} className='custom-checkbox-input' type='checkbox' />
-                               <span className='custom-checkbox-span'></span>
-                            </label>
-                            <p className={todo.complete ? 'todo-task todo-completed':'todo-task'}>{todo.task}</p>
-                            <button onClick={ ()=> handleDelete(todo) }className='btn btn-warning btn-trash'></button>
-                        </div>
+                        return <Todo key={todo.id} todo={todo} dispatch={dispatch} /> 
                     }
                 ) }
                
