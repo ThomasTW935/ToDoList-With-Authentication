@@ -1,6 +1,8 @@
 import React, { useReducer, useState, useRef } from 'react'
 import moon from '../../images/icon-moon.svg'
 import sun from '../../images/icon-sun.svg';
+import bgDesktopDark from '../../images/bg-desktop-dark.jpg';
+import bgDesktopLight from '../../images/bg-desktop-light.jpg';
 
 const ACTIONS = {
     ADD_TODO: 'add-todo',
@@ -81,9 +83,12 @@ export default function Todos() {
 
     return (
         <div className='todos'>
+            <div className='todos__background'>
+                <img src={ theme === THEMES.LIGHT ? bgDesktopLight : bgDesktopDark } />
+            </div>
             <div className='todos__header'>
                 <h1>TODO</h1>
-                <button onClick={handleThemeChange}><img src={ theme === THEMES.LIGHT ? moon : sun } /></button>
+                <button className='btn' onClick={handleThemeChange}><img src={ theme === THEMES.LIGHT ? moon : sun } /></button>
                 <form ref={formRef} onSubmit={handleForm} className='todo'>
                     <label className='custom-checkbox'><input onChange={(e)=>{ setTaskStatus( prevStatus=> !prevStatus ) }} className='custom-checkbox-input' type='checkbox' /><span className='custom-checkbox-span'></span></label>
                     <input onChange={ (e)=> { setTaskName(e.target.value) } }  className='todo-task' placeholder='Create a new Todo' />
