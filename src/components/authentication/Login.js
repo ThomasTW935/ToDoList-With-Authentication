@@ -2,6 +2,25 @@ import React, { useRef, useState } from 'react'
 import {Link, useHistory} from 'react-router-dom'
 import {useAuth} from '../../context/AuthContext'
 
+const ERRORS = {
+  INVALID_EMAIL: 'auth/invalid-email',
+  USER_DISABLED: 'auth/user-disabled',
+  USER_NOT_FOUND: 'auth/user-not-found',
+  WRONG_PASSWORD: 'auth/wrong-password',
+}
+
+function setErrorMessage(error){
+  let errorMessage = ''
+  switch(error){
+    case ERRORS.INVALID_EMAIL: errorMessage = 'Invalid Email'  ;break;
+    case ERRORS.USER_DISABLED: errorMessage = 'User Disabled' ;break;
+    case ERRORS.USER_NOT_FOUND: errorMessage = 'User not found' ;break;
+    case ERRORS.WRONG_PASSWORD: errorMessage = 'Wrong password' ;break;
+    default: errorMessage='Failed to login'
+  }
+  return errorMessage
+}
+
 export default function Login() {
     const emailRef = useRef()
     const passwordRef = useRef()
@@ -18,9 +37,9 @@ export default function Login() {
           setLoading(true)
           setError('')
           await login(emailRef.current.value,passwordRef.current.value)
-          history.push('/profile')
-        } catch {
-          setError('Failed to create an account')
+          history.push('/')
+        } catch(err) {
+          setError(setErrorMessage(err.code))
         }
         setLoading(false)
     }

@@ -1,22 +1,26 @@
-import React, { useReducer, useState, useRef } from 'react'
+import React, { useReducer, useState, useRef, useEffect } from 'react'
 import moon from '../../images/icon-moon.svg'
 import sun from '../../images/icon-sun.svg';
 import bgDesktopDark from '../../images/bg-desktop-dark.jpg';
 import bgDesktopLight from '../../images/bg-desktop-light.jpg';
 import Todo from './Todo';
+import {database} from '../../firebase'
+import {useAuth} from '../../context/AuthContext'
 
 export const ACTIONS = {
     ADD_TODO: 'add-todo',
     UPDATE_TODO: 'update-todo',
     DELETE_TODO: 'delete-todo',
     CLEAR_TODOS: 'clear-todos',
+    SET_TODOS: 'set-todos',
     UPDATE_STATUS: 'update-status'
 }
 
 
 function reducer(todos, {type,payload}){
-    console.log(type)
     switch(type){
+        case ACTIONS.SET_TODOS: 
+            return [...payload.todos]
         case ACTIONS.ADD_TODO:
             return [...todos, newTodo(payload.task, payload.complete)]
         case ACTIONS.UPDATE_TODO:
@@ -39,7 +43,6 @@ function newTodo(task,complete){
     return {id:Date.now(), task: task, complete: complete}
 }
 
-
 const STATUSES = ['all','active','completed']
 const THEMES = {
     LIGHT: 'light',
@@ -52,32 +55,49 @@ export default function Todos() {
     const [taskStatus, setTaskStatus] = useState(false)
     const formRef = useRef()
     const [theme, setTheme] = useState(THEMES.LIGHT)
+    const {currentUser}= useAuth()
 
-    const [todos, dispatch] = useReducer(reducer, 
-        [
+    const [todos, dispatch] = useReducer(reducer,[
             { id: 1, task: "Run", complete: false },
             { id: 2, task: "Swim 3x", complete: true },
             { id: 3, task: "Code", complete: false },
     ])
     const [activeStatus, setActiveStatus] = useState(STATUSES[0])
 
+    console.log(todos)
+
+    useEffect(()=>{ 
+        return database.todos.where('userId', '==', currentUser.uid)
+        .onSnapshot(querySnapshot=> {
+            dispatch({
+                type: ACTIONS.SET_TODOS, 
+                payload: { todos: querySnapshot.docs.map(database.fortmatDoc) }
+            })
+        })
+    },[currentUser])
     
     function handleForm(e){
         e.preventDefault()
+        database.todos.add({
+            task: taskName,
+            complete: taskStatus,
+            userId: currentUser.uid,
+            createdAt: database.getCurrentTimestamp()
+        })
         dispatch({type: ACTIONS.ADD_TODO, payload: {task:taskName, complete: taskStatus}})
-        console.log(taskName)
-        console.log(taskStatus)
         formRef.current.reset()
+        
     }
-   
+
+    
     function handleClear(){
-        dispatch({type: ACTIONS.CLEAR_TODOS, payload: {}})
+        // dispatch({type: ACTIONS.CLEAR_TODOS, payload: {}})
     }
     function handleThemeChange(){
         setTheme( prevTheme => prevTheme === THEMES.LIGHT ? THEMES.DARK : THEMES.LIGHT )
     }
 
-
+    function test(){}
 
     return (
         <div className='todos'>
@@ -95,7 +115,7 @@ export default function Todos() {
                     {
                         if(activeStatus === STATUSES[1] && todo.complete) return
                         if(activeStatus === STATUSES[2] && !todo.complete) return
-                        return <Todo key={todo.id} todo={todo} dispatch={dispatch} /> 
+                        return <Todo key={todo.id} todo={todo} dispatch={test} /> 
                     }
                 ) }
                
@@ -113,6 +133,7 @@ export default function Todos() {
                 </section>
                 <button onClick={ handleClear }className='btn btn-status'>Clear Completed</button>
             </div>
+            {currentUser.uid}
         </div>
     )
 }

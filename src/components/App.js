@@ -15,15 +15,15 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <NavBar/>
         <AuthProvider>
+          <NavBar/>
           <Switch>
+            <PrivateRoute exact path='/' component={Todos}/>
             <PrivateRoute path='/profile' component={Profile} />
             <PrivateRoute path='/update-profile' component={UpdateProfile} />
             <Route path='/forgot-password' component={ForgotPassword}/>
             <Route path='/signup' component={Signup}/>
             <Route path='/login' component={Login}/>
-            <Route exact path='/' component={Todos}/>
           </Switch>
         </AuthProvider>
       </Router>
