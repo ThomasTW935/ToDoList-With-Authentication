@@ -58,16 +58,19 @@
         }
     }
     &-trash{
-        opacity: 0;
         background:none;
         background-image: url('../images/icon-cross.svg');
         background-position:center;
         background-repeat: no-repeat;
+        @media(min-width: 768px){
+            opacity: 0;
+        }
     }
 }
 
 .custom-checkbox{
     position:relative;
+    margin-left: .5em;
     &-input{
         position:absolute;
         left: -9999px;

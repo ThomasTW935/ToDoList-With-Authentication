@@ -158,15 +158,21 @@ select {
 }
 
 .btn-trash {
-  opacity: 0;
   background: none;
   background-image: url("../images/icon-cross.svg");
   background-position: center;
   background-repeat: no-repeat;
 }
 
+@media (min-width: 768px) {
+  .btn-trash {
+    opacity: 0;
+  }
+}
+
 .custom-checkbox {
   position: relative;
+  margin-left: .5em;
 }
 
 .custom-checkbox-input {
@@ -298,60 +304,34 @@ nav div {
   gap: 1em;
 }
 
+body {
+  background-color: gray;
+}
+
+body.dark-mode {
+  color: white;
+  background-color: #161620;
+}
+
+body.dark-mode .todos__form, body.dark-mode .todos__list, body.dark-mode .todos__footer, body.dark-mode .todos__status {
+  background-color: #25273C;
+}
+
+body.dark-mode .todos__background {
+  background-image: url("../images/bg-mobile-dark.jpg");
+}
+
+body.dark-mode .todo-task {
+  color: white;
+}
+
+body.dark-mode .btn-status-active {
+  color: #1A4FC1;
+}
+
 .todos {
-  width: 50ch;
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.todos .todo {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   padding: 1em;
-  gap: 1em;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-}
-
-.todos .todo button {
-  margin-left: auto;
-}
-
-.todos .todo:hover button {
-  opacity: 1;
-}
-
-.todos .todo-task {
-  font-weight: bolder;
-  margin: 0 1em;
-}
-
-.todos .todo-completed {
-  text-decoration: line-through;
-  opacity: .5;
-}
-
-.todos__background {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 30%;
-  z-index: -1;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-
-.todos .dark-theme {
-  background-image: url("../images/bg-desktop-dark.jpg");
-}
-
-.todos .light-theme {
-  background-image: url("../images/bg-desktop-light.jpg");
+  position: relative;
 }
 
 .todos__header {
@@ -362,41 +342,108 @@ nav div {
       -ms-flex-pack: justify;
           justify-content: space-between;
   color: white;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-}
-
-.todos__header form {
-  width: 100%;
 }
 
 .todos__header button {
   background: none;
-  border: none;
 }
 
-.todos__body, .todos__footer {
-  background: white;
+.todos__background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  z-index: -1;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url("../images/bg-mobile-light.jpg");
+}
+
+.todos__body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   border-radius: 5px;
+}
+
+.todos__list {
+  margin-top: 1em;
+}
+
+.todos__form {
+  border-radius: 5px;
+}
+
+.todos__form, .todos__list, .todos__footer {
+  background: #F6F6F8;
 }
 
 .todos__footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  font-size: .8rem;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  padding: .5em 1em;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
-.todos__footer section {
+.todos__status {
+  padding: .5em 1em;
+  border-radius: 5px;
+  position: absolute;
+  bottom: -120%;
+  left: 0;
+  width: 100%;
+  background: #F6F6F8;
+  text-align: center;
+  font-weight: bold;
+}
+
+.todo {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  gap: .5em;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 1em;
+}
+
+.todo-task {
+  background: none;
+  border: none;
+  padding: 1em;
+  outline: none;
+}
+
+.todo button {
+  margin-left: auto;
+}
+
+.todo:hover button {
+  opacity: 1;
+}
+
+.todo-task {
+  font-weight: bolder;
+  margin: 0 1em;
+}
+
+.todo-completed {
+  text-decoration: line-through;
+  opacity: .5;
 }
 /*# sourceMappingURL=main.css.map */
