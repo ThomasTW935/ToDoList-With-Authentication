@@ -5,8 +5,15 @@ import sun from '../../images/icon-sun.svg';
 export default function ThemeChange() {
   const [darkTheme, setDarkTheme] = useState(false)
 
-  function handleThemeChange(){
-    setDarkTheme( prevTheme => !prevTheme)
+  useEffect(() => {
+    const getTheme = localStorage.getItem('Theme')
+    if(getTheme === 'dark') {
+      setDarkTheme(true)
+      return document.body.classList.add('dark-mode')
+    }
+  }, [])
+
+  useEffect(()=>{
     if(darkTheme){
       localStorage.setItem('Theme','dark')
       document.body.classList.add('dark-mode')
@@ -14,14 +21,9 @@ export default function ThemeChange() {
     } 
     localStorage.setItem('Theme','light')
     document.body.classList.remove('dark-mode')
-  }
-
-  useEffect(() => {
-    const getTheme = localStorage.getItem('Theme')
-    if(getTheme === 'dark') return document.body.classList.add('dark-mode')
-  }, [])
+  },[darkTheme])
 
   return (
-    <button className='btn' onClick={handleThemeChange}><img src={ darkTheme ? moon : sun } alt='Change Theme' /></button>
+    <button className='btn' onClick={ () => {setDarkTheme(prevTheme => !prevTheme)} }><img src={ !darkTheme ? moon : sun } alt='Change Theme' /></button>
   )
 }
