@@ -50,11 +50,7 @@ export default function Todos() {
     const formRef = useRef()
     const {currentUser}= useAuth()
 
-    const [todos, dispatch] = useReducer(reducer,[
-            { id: 1, task: "Run", complete: false },
-            { id: 2, task: "Swim 3x", complete: true },
-            { id: 3, task: "Code", complete: false },
-    ])
+    const [todos, dispatch] = useReducer(reducer,[])
     const [activeStatus, setActiveStatus] = useState(STATUSES[0])
 
 

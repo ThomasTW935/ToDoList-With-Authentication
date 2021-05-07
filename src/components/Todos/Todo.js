@@ -1,13 +1,24 @@
 import React from 'react'
 import {ACTIONS} from './Todos'
+import {database} from '../../firebase'
 
 export default function Todo({todo,dispatch}) {
     function handleCheckBox(todo){
-        console.log(ACTIONS)
-        console.log(todo)
+        database.todos.doc(todo.id).update({
+            complete: !todo.complete
+        }).then(()=>{
+            console.log('Document Updated')
+        }).catch(error=>{
+            console.log(`Error: ${error}`)
+        })
         dispatch({type: ACTIONS.UPDATE_TODO, payload: {id:todo.id}})
     }
     function handleDelete(todo){
+        database.todos.doc(todo.id).delete().then(()=>{
+            console.log('Document Deleted')
+        }).catch(error=>{
+            console.log('Error: ' + error)
+        })
         dispatch({type: ACTIONS.DELETE_TODO, payload: {id:todo.id}})
     }
     return (
