@@ -82,7 +82,14 @@ export default function Todos() {
 
     
     function handleClear(){
-        // dispatch({type: ACTIONS.CLEAR_TODOS, payload: {}})
+      todos.map(todo=>{
+        database.todos.doc(todo.id).delete().then(()=>{
+          console.log('Document Deleted')
+        }).catch(error=>{
+          console.log('Error: '+ error)
+        })
+      })
+      dispatch({type: ACTIONS.CLEAR_TODOS, payload: {}})
     }
    
 
