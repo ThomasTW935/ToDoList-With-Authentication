@@ -1,3 +1,10 @@
+body.dark-mode{
+    .formContainer{
+        background:#25273C;
+        box-shadow: 0px 20px 20px 12px #101018;
+        border:none;
+    }
+}
 .formContainer{
     border: 1px solid  hsl(0, 0%, 80%);
     padding: 1.5em 1em;

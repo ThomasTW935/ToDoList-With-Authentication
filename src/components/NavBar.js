@@ -18,13 +18,9 @@ export default function NavBar() {
 
     return (
         <nav>
-            <h2><Link to='/'>TodoList</Link></h2>
-            <div>
-                { 
-                    renderComponent() 
-                }
-               
-            </div>
+            { 
+                renderComponent() 
+            }
         </nav>
     )
 }

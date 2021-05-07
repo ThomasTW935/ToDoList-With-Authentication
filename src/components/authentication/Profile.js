@@ -27,6 +27,7 @@ export default function Profile() {
             </div>
             <Link className='btn btn-primary' to='/update-profile'>Update Profile</Link>
             <button className='btn btn-secondary' onClick={handleLogout}>Log out</button>
+            <Link to='/'>Return to Dashboard</Link>
         </div>
       </div>
     )

@@ -222,6 +222,13 @@ select {
   background-position: center;
 }
 
+body.dark-mode .formContainer {
+  background: #25273C;
+  -webkit-box-shadow: 0px 20px 20px 12px #101018;
+          box-shadow: 0px 20px 20px 12px #101018;
+  border: none;
+}
+
 .formContainer {
   border: 1px solid #cccccc;
   padding: 1.5em 1em;
@@ -283,9 +290,9 @@ nav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
