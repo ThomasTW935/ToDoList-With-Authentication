@@ -73,6 +73,7 @@ export default function Todos() {
             createdAt: database.getCurrentTimestamp()
         })
         dispatch({type: ACTIONS.ADD_TODO, payload: {task:taskName, complete: taskStatus}})
+        setTaskStatus(false)
         formRef.current.reset()
     }
 
