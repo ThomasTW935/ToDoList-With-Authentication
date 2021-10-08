@@ -106,7 +106,7 @@ select {
 .btn {
   border-radius: 5px;
   border: 1px solid transparent;
-  padding: .5em 1em;
+  padding: 0.5em 1em;
   cursor: pointer;
   text-decoration: none;
   color: inherit;
@@ -119,7 +119,7 @@ select {
 }
 
 .btn-primary:hover {
-  background: #337aff;
+  opacity: 0.8;
 }
 
 .btn-secondary {
@@ -131,7 +131,7 @@ select {
 }
 
 .btn-secondary:hover {
-  background: #3ba626;
+  opacity: 0.8;
 }
 
 .btn-neutral {
@@ -145,7 +145,7 @@ select {
 .btn-status {
   background-color: transparent;
   text-transform: capitalize;
-  opacity: .5;
+  opacity: 0.5;
 }
 
 .btn-status:hover {
@@ -172,7 +172,7 @@ select {
 
 .custom-checkbox {
   position: relative;
-  margin-left: .5em;
+  margin-left: 0.5em;
 }
 
 .custom-checkbox-input {
@@ -208,7 +208,7 @@ select {
 }
 
 .custom-checkbox-span::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -223,7 +223,7 @@ select {
 }
 
 body.dark-mode .formContainer {
-  background: #25273C;
+  background: #25273c;
   -webkit-box-shadow: 0px 20px 20px 12px #101018;
           box-shadow: 0px 20px 20px 12px #101018;
   border: none;
@@ -243,7 +243,7 @@ body.dark-mode .formContainer {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  gap: .5em;
+  gap: 0.5em;
   background: white;
   border-radius: 4px;
   position: absolute;
@@ -276,13 +276,14 @@ body.dark-mode .formContainer {
 
 .form button {
   width: 100%;
+  margin: 0.25em 0;
 }
 
 .form input {
   border-radius: 4px;
   border: 1px solid #cccccc;
   border-radius: 5px;
-  padding: .5em;
+  padding: 0.5em;
   outline: none;
 }
 
